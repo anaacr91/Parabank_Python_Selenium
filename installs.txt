@@ -1,0 +1,23 @@
+#Crear archivo de entorno
+python -m venv venv   
+
+#Instalar Selenium
+ py -m pip install selenium     
+
+##Instalar pytest
+ py -m pip install pytest  
+ py -m pip install pytest-html  
+
+##Instalar webdriver
+py -m pip install webdriver-manager
+
+##Activar Entorno
+C:\Users\Ana\Documents\GitHub\Parabank_Selenium_python\Parabank_Python_Selenium> .\venv\Scripts\Activate.ps1             
+
+##Reporte html
+C:/Users/Ana/Downloads/testing_funcional_amaris/venv/Scripts/python.exe -m pytest tests/test_parabank.py -v --html=report.html --self-contained-html                                                                                                                         
+
+##ejecutar tests
+C:/Users/Ana/Downloads/testing_funcional_amaris/venv/Scripts/python.exe -m pytest tests/test_parabank.py -v --tb=short                                                                                                                                                              
+
+
