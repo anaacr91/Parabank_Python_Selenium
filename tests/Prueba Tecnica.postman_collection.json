@@ -1,0 +1,3076 @@
+{
+  "info": {
+    "_postman_id": "cb1863f6-e9ec-46cd-a681-5babaaef310a",
+    "name": "Prueba Tecnica",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32893793"
+  },
+  "item": [
+    {
+      "name": "LOGIN",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 200 OK\", function () {\r",
+              "    pm.expect(pm.response.code).to.eql(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response body is not empty\", function () {\r",
+              "    pm.expect(pm.response.text()).to.not.be.empty;\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/login/john/demo",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "login",
+            "john",
+            "demo"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "LOGIN",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "JSESSIONID",
+                "value": "FEB8BFE3ECC2F26CF1E0093BC3A524F5",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/login/john/demo",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "login",
+                "john",
+                "demo"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:00:34 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07a6c6fd9a4ffb-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<customer>\n    <id>12212</id>\n    <firstName>John</firstName>\n    <lastName>Smith</lastName>\n    <address>\n        <street>1431 Main St</street>\n        <city>Beverly Hills</city>\n        <state>CA</state>\n        <zipCode>90210</zipCode>\n    </address>\n    <phoneNumber>310-447-4121</phoneNumber>\n    <ssn>622-11-9999</ssn>\n</customer>"
+        }
+      ]
+    },
+    {
+      "name": "BILLPAY",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"No error in response\", function () {\r",
+              "    pm.expect(pm.response.text()).to.not.include(\"error\"); \r",
+              "});\r",
+              "pm.test(\"Server header is present\", function () {\r",
+              "    pm.response.to.have.header(\"Server\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Response time is less than 5000ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+              "});\r",
+              "\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "<payee>\r\n    <name>John Smith</name>\r\n    <address>\r\n        <street>My street</street>\r\n        <city>My city</city>\r\n        <state>My state</state>\r\n        <zipCode>90210</zipCode>\r\n    </address>\r\n    <phoneNumber>0123456789</phoneNumber>\r\n    <accountNumber>12345</accountNumber>\r\n</payee>\r\n",
+          "options": {
+            "raw": {
+              "language": "xml"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/billpay?accountId=13344&amount=100",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "billpay"
+          ],
+          "query": [
+            {
+              "key": "accountId",
+              "value": "13344"
+            },
+            {
+              "key": "amount",
+              "value": "100"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "BILLPAY",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "<payee>\r\n    <name>John Smith</name>\r\n    <address>\r\n        <street>My street</street>\r\n        <city>My city</city>\r\n        <state>My state</state>\r\n        <zipCode>90210</zipCode>\r\n    </address>\r\n    <phoneNumber>0123456789</phoneNumber>\r\n    <accountNumber>12345</accountNumber>\r\n</payee>\r\n",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/billpay?accountId=13344&amount=100",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "billpay"
+              ],
+              "query": [
+                {
+                  "key": "accountId",
+                  "value": "13344"
+                },
+                {
+                  "key": "amount",
+                  "value": "100"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:00:58 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07a7615cb74ffb-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<billPayResult>\n    <accountId>13344</accountId>\n    <amount>100</amount>\n    <payeeName>John Smith</payeeName>\n</billPayResult>"
+        }
+      ]
+    },
+    {
+      "name": "CREATEACCOUNT",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); // Ajusta según el mensaje real de error\r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]); // Éxito esperado\r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/createAccount?customerId=12212&newAccountType=1&fromAccountId=13344",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "createAccount"
+          ],
+          "query": [
+            {
+              "key": "customerId",
+              "value": "12212"
+            },
+            {
+              "key": "newAccountType",
+              "value": "1"
+            },
+            {
+              "key": "fromAccountId",
+              "value": "13344"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "CREATEACCOUNT",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/createAccount?customerId=12212&newAccountType=1&fromAccountId=13344",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "createAccount"
+              ],
+              "query": [
+                {
+                  "key": "customerId",
+                  "value": "12212"
+                },
+                {
+                  "key": "newAccountType",
+                  "value": "1"
+                },
+                {
+                  "key": "fromAccountId",
+                  "value": "13344"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:01:09 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07a7a4fdfe4ffb-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<account>\n    <id>15453</id>\n    <customerId>12212</customerId>\n    <type>SAVINGS</type>\n    <balance>0</balance>\n</account>"
+        }
+      ]
+    },
+    {
+      "name": "DEPOSIT",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "\r",
+              "const amount = pm.request.url.query.get(\"amount\");\r",
+              "if (amount <= 0) {\r",
+              "    console.log(\"Error: Amount must be positive\");\r",
+              "}\r",
+              "pm.environment.set(\"depositTimestamp\", new Date().toISOString());"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/deposit?accountId=13344&amount=200",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "deposit"
+          ],
+          "query": [
+            {
+              "key": "accountId",
+              "value": "13344"
+            },
+            {
+              "key": "amount",
+              "value": "200"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "DEPOSIT",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/deposit?accountId=13344&amount=200",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "deposit"
+              ],
+              "query": [
+                {
+                  "key": "accountId",
+                  "value": "13344"
+                },
+                {
+                  "key": "amount",
+                  "value": "200"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:01:19 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Content-Length",
+              "value": "45"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07a7e21c7a4ffb-BCN"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            }
+          ],
+          "cookie": [],
+          "body": "Successfully deposited $200 to account #13344"
+        }
+      ]
+    },
+    {
+      "name": "ACCOUNT_ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "\r",
+              "const accountId = pm.request.url.path[pm.request.url.path.length - 1]; \r",
+              "if (isNaN(accountId)) {\r",
+              "    console.log(\"Error: Invalid accountId\");\r",
+              "}\r",
+              "\r",
+              "pm.environment.set(\"queryTimestamp\", new Date().toISOString());"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/accounts/13344",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "accounts",
+            "13344"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "ACCOUNT_ID",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/accounts/13344",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "accounts",
+                "13344"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:01:27 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07a817ac8b4ffb-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<account>\n    <id>13344</id>\n    <customerId>12212</customerId>\n    <type>SAVINGS</type>\n    <balance>1081.10</balance>\n</account>"
+        }
+      ]
+    },
+    {
+      "name": "CUSTOMER_ID_ACCOUNTS",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "\r",
+              "const customerId = pm.request.url.path[pm.request.url.path.indexOf(\"customers\") + 1]; // \r",
+              "if (isNaN(customerId)) {\r",
+              "    console.log(\"Error: Invalid customerId\");\r",
+              "}\r",
+              "\r",
+              "pm.environment.set(\"accountsQueryTimestamp\", new Date().toISOString());"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/customers/12212/accounts",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "customers",
+            "12212",
+            "accounts"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "CUSTOMER_ID_ACCOUNTS",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/customers/12212/accounts",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "customers",
+                "12212",
+                "accounts"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:01:40 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07a86918624ffb-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<accounts>\n    <account>\n        <id>12345</id>\n        <customerId>12212</customerId>\n        <type>CHECKING</type>\n        <balance>-1300.00</balance>\n    </account>\n    <account>\n        <id>12456</id>\n        <customerId>12212</customerId>\n        <type>CHECKING</type>\n        <balance>-2079.55</balance>\n    </account>\n    <account>\n        <id>12567</id>\n        <customerId>12212</customerId>\n        <type>CHECKING</type>\n        <balance>0.00</balance>\n    </account>\n    <account>\n        <id>12678</id>\n        <customerId>12212</customerId>\n        <type>SAVINGS</type>\n        <balance>-200.00</balance>\n    </account>\n    <account>\n        <id>12789</id>\n        <customerId>12212</customerId>\n        <type>CHECKING</type>\n        <balance>100.00</balance>\n    </account>\n    <account>\n        <id>12900</id>\n        <customerId>12212</customerId>\n        <type>CHECKING</type>\n        <balance>0.00</balance>\n    </account>\n    <account>\n        <id>13011</id>\n        <customerId>12212</customerId>\n        <type>CHECKING</type>\n        <balance>86.00</balance>\n    </account>\n    <account>\n        <id>13122</id>\n        <customerId>12212</customerId>\n        <type>CHECKING</type>\n        <balance>1090.00</balance>\n    </account>\n    <account>\n        <id>13233</id>\n        <customerId>12212</customerId>\n        <type>CHECKING</type>\n        <balance>100.00</balance>\n    </account>\n    <account>\n        <id>13344</id>\n        <customerId>12212</customerId>\n        <type>SAVINGS</type>\n        <balance>1081.10</balance>\n    </account>\n    <account>\n        <id>13566</id>\n        <customerId>12212</customerId>\n        <type>LOAN</type>\n        <balance>200.00</balance>\n    </account>\n    <account>\n        <id>13677</id>\n        <customerId>12212</customerId>\n        <type>LOAN</type>\n        <balance>100.00</balance>\n    </account>\n    <account>\n        <id>13788</id>\n        <customerId>12212</customerId>\n        <type>LOAN</type>\n        <balance>200.00</balance>\n    </account>\n    <account>\n        <id>13899</id>\n        <customerId>12212</customerId>\n        <type>LOAN</type>\n        <balance>185.00</balance>\n    </account>\n    <account>\n        <id>14121</id>\n        <customerId>12212</customerId>\n        <type>LOAN</type>\n        <balance>1000.00</balance>\n    </account>\n    <account>\n        <id>14343</id>\n        <customerId>12212</customerId>\n        <type>LOAN</type>\n        <balance>1000.00</balance>\n    </account>\n    <account>\n        <id>14454</id>\n        <customerId>12212</customerId>\n        <type>LOAN</type>\n        <balance>1000.00</balance>\n    </account>\n    <account>\n        <id>14676</id>\n        <customerId>12212</customerId>\n        <type>LOAN</type>\n        <balance>1000.00</balance>\n    </account>\n    <account>\n        <id>15009</id>\n        <customerId>12212</customerId>\n        <type>LOAN</type>\n        <balance>200.00</balance>\n    </account>\n    <account>\n        <id>15120</id>\n        <customerId>12212</customerId>\n        <type>LOAN</type>\n        <balance>1000.00</balance>\n    </account>\n    <account>\n        <id>15231</id>\n        <customerId>12212</customerId>\n        <type>LOAN</type>\n        <balance>1000.00</balance>\n    </account>\n    <account>\n        <id>15342</id>\n        <customerId>12212</customerId>\n        <type>LOAN</type>\n        <balance>1000.00</balance>\n    </account>\n    <account>\n        <id>15453</id>\n        <customerId>12212</customerId>\n        <type>SAVINGS</type>\n        <balance>250.00</balance>\n    </account>\n    <account>\n        <id>15564</id>\n        <customerId>12212</customerId>\n        <type>LOAN</type>\n        <balance>1000.00</balance>\n    </account>\n    <account>\n        <id>54321</id>\n        <customerId>12212</customerId>\n        <type>CHECKING</type>\n        <balance>1351.12</balance>\n    </account>\n</accounts>"
+        }
+      ]
+    },
+    {
+      "name": "ACC_iD_TRANSACTION",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let xmlText = pm.response.text();\r",
+              "let data = xml2Json(xmlText); \r",
+              "\r",
+              "let txRoot = data.transactions;\r",
+              "\r",
+              "let txList = [];\r",
+              "if (!txRoot) {\r",
+              "    txList = [];\r",
+              "} else if (Array.isArray(txRoot.transaction)) {\r",
+              "    txList = txRoot.transaction;\r",
+              "} else if (txRoot.transaction) {\r",
+              "    txList = [txRoot.transaction];\r",
+              "}\r",
+              "\r",
+              "pm.test(\"At least one transaction returned\", function () {\r",
+              "    pm.expect(txList.length).to.be.above(0);\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\");\r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]); \r",
+              "    }\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Transactions contain expected fields\", function () {\r",
+              "    txList.forEach(t => {\r",
+              "        pm.expect(t.id).to.exist;\r",
+              "        pm.expect(t.accountId).to.exist;\r",
+              "        pm.expect(t.type).to.exist;\r",
+              "        pm.expect(t.amount).to.exist;\r",
+              "    });\r",
+              "});\r",
+              "\r",
+              "\r",
+              "if (txList.length > 0) {\r",
+              "    pm.environment.set(\"transactionId\", txList[0].id);\r",
+              "}\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/accounts/13344/transactions",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "accounts",
+            "13344",
+            "transactions"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "ACC_iD_TRANSACTION",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/accounts/13344/transactions",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "accounts",
+                "13344",
+                "transactions"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:01:48 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07a89afd334ffb-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<transactions>\n    <transaction>\n        <id>14254</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-15T00:00:00.000Z</date>\n        <amount>1000.00</amount>\n        <description>Funds Transfer Sent</description>\n    </transaction>\n    <transaction>\n        <id>14365</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-15T00:00:00.000Z</date>\n        <amount>1000.00</amount>\n        <description>Funds Transfer Received</description>\n    </transaction>\n    <transaction>\n        <id>17251</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>100.00</amount>\n        <description>Bill Payment to John Smith</description>\n    </transaction>\n    <transaction>\n        <id>17473</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>250.00</amount>\n        <description>Funds Transfer Sent</description>\n    </transaction>\n    <transaction>\n        <id>17695</id>\n        <accountId>13344</accountId>\n        <type>Credit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>200.00</amount>\n        <description>Deposit via Web Service</description>\n    </transaction>\n</transactions>"
+        }
+      ]
+    },
+    {
+      "name": "transfer-from-to_account",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "\r",
+              "const amount = pm.request.url.query.get(\"amount\");\r",
+              "const fromId = pm.request.url.query.get(\"fromAccountId\");\r",
+              "const toId = pm.request.url.query.get(\"toAccountId\");\r",
+              "if (amount <= 0 || fromId === toId) {\r",
+              "    console.log(\"Error: Invalid amount or same accounts\");\r",
+              "}\r",
+              "\r",
+              "pm.environment.set(\"transferTimestamp\", new Date().toISOString());\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/transfer?fromAccountId=13344&toAccountId=13455&amount=100",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "transfer"
+          ],
+          "query": [
+            {
+              "key": "fromAccountId",
+              "value": "13344"
+            },
+            {
+              "key": "toAccountId",
+              "value": "13455"
+            },
+            {
+              "key": "amount",
+              "value": "100"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "transfer-from-to_account",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/transfer?fromAccountId=13344&toAccountId=13455&amount=100",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "transfer"
+              ],
+              "query": [
+                {
+                  "key": "fromAccountId",
+                  "value": "13344"
+                },
+                {
+                  "key": "toAccountId",
+                  "value": "13455"
+                },
+                {
+                  "key": "amount",
+                  "value": "100"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:02:10 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07a92088354ffb-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "Successfully transferred $100 from account #13344 to account #13455"
+        }
+      ]
+    },
+    {
+      "name": "refund",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/withdraw?accountId=13344&amount=100",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "withdraw"
+          ],
+          "query": [
+            {
+              "key": "accountId",
+              "value": "13344"
+            },
+            {
+              "key": "amount",
+              "value": "100"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "refund",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/withdraw?accountId=13344&amount=100",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "withdraw"
+              ],
+              "query": [
+                {
+                  "key": "accountId",
+                  "value": "13344"
+                },
+                {
+                  "key": "amount",
+                  "value": "100"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:03:31 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Content-Length",
+              "value": "46"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07ab1f09c94ffb-BCN"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            }
+          ],
+          "cookie": [],
+          "body": "Successfully withdrew $100 from account #13344"
+        }
+      ]
+    },
+    {
+      "name": "create_account",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\");\r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/createAccount?customerId=12212&newAccountType=2&fromAccountId=13344",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "createAccount"
+          ],
+          "query": [
+            {
+              "key": "customerId",
+              "value": "12212"
+            },
+            {
+              "key": "newAccountType",
+              "value": "2"
+            },
+            {
+              "key": "fromAccountId",
+              "value": "13344"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "create_account",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/createAccount?customerId=12212&newAccountType=2&fromAccountId=13344",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "createAccount"
+              ],
+              "query": [
+                {
+                  "key": "customerId",
+                  "value": "12212"
+                },
+                {
+                  "key": "newAccountType",
+                  "value": "2"
+                },
+                {
+                  "key": "fromAccountId",
+                  "value": "13344"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:02:37 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07a9ccaf8a4ffb-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<account>\n    <id>15786</id>\n    <customerId>12212</customerId>\n    <type>LOAN</type>\n    <balance>0</balance>\n</account>"
+        }
+      ]
+    },
+    {
+      "name": "acc_id/transaction_amount",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); \r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]); \r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/accounts/13344/transactions/amount/100",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "accounts",
+            "13344",
+            "transactions",
+            "amount",
+            "100"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "acc_id/transaction_amount",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/accounts/13344/transactions/amount/100",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "accounts",
+                "13344",
+                "transactions",
+                "amount",
+                "100"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:03:39 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07ab4eaa264ffb-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<transactions>\n    <transaction>\n        <id>17251</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>100.00</amount>\n        <description>Bill Payment to John Smith</description>\n    </transaction>\n    <transaction>\n        <id>17917</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>100.00</amount>\n        <description>Funds Transfer Sent</description>\n    </transaction>\n    <transaction>\n        <id>18472</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>100.00</amount>\n        <description>Withdraw via Web Service</description>\n    </transaction>\n</transactions>"
+        }
+      ]
+    },
+    {
+      "name": "acc_id/transact_date",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); \r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]); \r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/accounts/13344/transactions/onDate/18-11-2024",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "accounts",
+            "13344",
+            "transactions",
+            "onDate",
+            "18-11-2024"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "acc_id/transact_date",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/accounts/12345/transactions/onDate/12-11-2024",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "accounts",
+                "12345",
+                "transactions",
+                "onDate",
+                "12-11-2024"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:03:54 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07abaa18014ffb-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<transactions>\n    <transaction>\n        <id>12145</id>\n        <accountId>12345</accountId>\n        <type>Credit</type>\n        <date>2024-12-11T00:00:00.000Z</date>\n        <amount>300.00</amount>\n        <description>Check # 1111</description>\n    </transaction>\n</transactions>"
+        }
+      ]
+    },
+    {
+      "name": "acc_id_transact_month_type",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); \r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]); \r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/accounts/13344/transactions/month/11/type/Debit",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "accounts",
+            "13344",
+            "transactions",
+            "month",
+            "11",
+            "type",
+            "Debit"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "acc-id-transact-month-type",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/accounts/13344/transactions/month/11/type/Debit",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "accounts",
+                "13344",
+                "transactions",
+                "month",
+                "11",
+                "type",
+                "Debit"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:44:27 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07e7129cd1981f-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<transactions>\n    <transaction>\n        <id>14476</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>100.00</amount>\n        <description>Down Payment for Loan # 13566</description>\n    </transaction>\n    <transaction>\n        <id>14587</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>10.00</amount>\n        <description>Funds Transfer Sent</description>\n    </transaction>\n    <transaction>\n        <id>14809</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>5912.93</amount>\n        <description>Funds Transfer Sent</description>\n    </transaction>\n    <transaction>\n        <id>15031</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>10.00</amount>\n        <description>Funds Transfer Sent</description>\n    </transaction>\n    <transaction>\n        <id>15253</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>-10.00</amount>\n        <description>Funds Transfer Sent</description>\n    </transaction>\n</transactions>"
+        }
+      ]
+    },
+    {
+      "name": "account_transact_from date_to date",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); \r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]); \r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/accounts/13344/transactions/fromDate/01-01-2024/toDate/17-11-2025",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "accounts",
+            "13344",
+            "transactions",
+            "fromDate",
+            "01-01-2024",
+            "toDate",
+            "17-11-2025"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "acc-transact-betweendates",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/accounts/13344/transactions/fromDate/01-01-2024/toDate/17-11-2025",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "accounts",
+                "13344",
+                "transactions",
+                "fromDate",
+                "01-01-2024",
+                "toDate",
+                "17-11-2025"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:45:01 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07e7e5da00981f-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<transactions>\n    <transaction>\n        <id>14476</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>100.00</amount>\n        <description>Down Payment for Loan # 13566</description>\n    </transaction>\n    <transaction>\n        <id>14587</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>10.00</amount>\n        <description>Funds Transfer Sent</description>\n    </transaction>\n    <transaction>\n        <id>14809</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>5912.93</amount>\n        <description>Funds Transfer Sent</description>\n    </transaction>\n    <transaction>\n        <id>15031</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>10.00</amount>\n        <description>Funds Transfer Sent</description>\n    </transaction>\n    <transaction>\n        <id>15253</id>\n        <accountId>13344</accountId>\n        <type>Debit</type>\n        <date>2025-11-18T00:00:00.000Z</date>\n        <amount>-10.00</amount>\n        <description>Funds Transfer Sent</description>\n    </transaction>\n</transactions>"
+        }
+      ]
+    },
+    {
+      "name": "account_id_transaction_date",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); \r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]); \r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/accounts/12345/transactions/onDate/12-11-2024",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "accounts",
+            "12345",
+            "transactions",
+            "onDate",
+            "12-11-2024"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "account_id_transaction_date",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/accounts/12345/transactions/onDate/12-11-2024",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "accounts",
+                "12345",
+                "transactions",
+                "onDate",
+                "12-11-2024"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 14:14:13 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a0812afe94213d0-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<transactions>\n    <transaction>\n        <id>12145</id>\n        <accountId>12345</accountId>\n        <type>Credit</type>\n        <date>2024-12-11T00:00:00.000Z</date>\n        <amount>300.00</amount>\n        <description>Check # 1111</description>\n    </transaction>\n</transactions>"
+        }
+      ]
+    },
+    {
+      "name": "withdraw",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); \r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]); \r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/withdraw?accountId=13344&amount=100",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "withdraw"
+          ],
+          "query": [
+            {
+              "key": "accountId",
+              "value": "13344"
+            },
+            {
+              "key": "amount",
+              "value": "100"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "withdraw",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/withdraw?accountId=13344&amount=100",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "withdraw"
+              ],
+              "query": [
+                {
+                  "key": "accountId",
+                  "value": "13344"
+                },
+                {
+                  "key": "amount",
+                  "value": "100"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:46:39 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Content-Length",
+              "value": "46"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07ea4a2fe2981f-BCN"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            }
+          ],
+          "cookie": [],
+          "body": "Successfully withdrew $100 from account #13344"
+        }
+      ]
+    },
+    {
+      "name": "customerdetails",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); \r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]); \r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/customers/12212",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "customers",
+            "12212"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "customer-details",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/customers/12212",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "customers",
+                "12212"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:46:50 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07ea919fa8981f-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<customer>\n    <id>12212</id>\n    <firstName>John</firstName>\n    <lastName>Smith</lastName>\n    <address>\n        <street>1431 Main St</street>\n        <city>Beverly Hills</city>\n        <state>CA</state>\n        <zipCode>90210</zipCode>\n    </address>\n    <phoneNumber>310-447-4121</phoneNumber>\n    <ssn>622-11-9999</ssn>\n</customer>"
+        }
+      ]
+    },
+    {
+      "name": "loan",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); \r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]); \r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/requestLoan?customerId=12212&amount=1&downPayment=1&fromAccountId=12345",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "requestLoan"
+          ],
+          "query": [
+            {
+              "key": "customerId",
+              "value": "12212"
+            },
+            {
+              "key": "amount",
+              "value": "1"
+            },
+            {
+              "key": "downPayment",
+              "value": "1"
+            },
+            {
+              "key": "fromAccountId",
+              "value": "12345"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "transaction-id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); \r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]); \r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/transactions/14476",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "transactions",
+            "14476"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "transaction-id",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/transactions/14476",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "transactions",
+                "14476"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:54:05 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07f52dbb609a49-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<transaction>\n    <id>14476</id>\n    <accountId>13344</accountId>\n    <type>Debit</type>\n    <date>2025-11-18T00:00:00.000Z</date>\n    <amount>250.00</amount>\n    <description>Funds Transfer Sent</description>\n</transaction>"
+        }
+      ]
+    },
+    {
+      "name": "customer_positions",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); \r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]); \r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/customers/12212/positions",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "customers",
+            "12212",
+            "positions"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "customer-positions",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/customers/12212/positions",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "customers",
+                "12212",
+                "positions"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:47:34 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07eba38aba981f-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<positions>\n    <position>\n        <positionId>12345</positionId>\n        <customerId>12212</customerId>\n        <name>AMR Corporation</name>\n        <symbol>AAR</symbol>\n        <shares>20</shares>\n        <purchasePrice>23.5300</purchasePrice>\n    </position>\n</positions>"
+        }
+      ]
+    },
+    {
+      "name": "Buy position",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); \r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]); \r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/customers/12212/buyPosition?accountId=13344&name=AMR%20Corporation&symbol=AAR&shares=2&pricePerShare=22",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "customers",
+            "12212",
+            "buyPosition"
+          ],
+          "query": [
+            {
+              "key": "accountId",
+              "value": "13344"
+            },
+            {
+              "key": "name",
+              "value": "AMR%20Corporation"
+            },
+            {
+              "key": "symbol",
+              "value": "AAR"
+            },
+            {
+              "key": "shares",
+              "value": "2"
+            },
+            {
+              "key": "pricePerShare",
+              "value": "22"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "buyposition",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/customers/12212/buyPosition?accountId=13344&name=AMR%20Corporation&symbol=AAR&shares=2&pricePerShare=22",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "customers",
+                "12212",
+                "buyPosition"
+              ],
+              "query": [
+                {
+                  "key": "accountId",
+                  "value": "13344"
+                },
+                {
+                  "key": "name",
+                  "value": "AMR%20Corporation"
+                },
+                {
+                  "key": "symbol",
+                  "value": "AAR"
+                },
+                {
+                  "key": "shares",
+                  "value": "2"
+                },
+                {
+                  "key": "pricePerShare",
+                  "value": "22"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:48:05 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07ec626bae981f-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<positions>\n    <position>\n        <positionId>12345</positionId>\n        <customerId>12212</customerId>\n        <name>AMR Corporation</name>\n        <symbol>AAR</symbol>\n        <shares>20</shares>\n        <purchasePrice>23.5300</purchasePrice>\n    </position>\n    <position>\n        <positionId>13017</positionId>\n        <customerId>12212</customerId>\n        <name>AMR Corporation</name>\n        <symbol>AAR</symbol>\n        <shares>2</shares>\n        <purchasePrice>22.0000</purchasePrice>\n    </position>\n</positions>"
+        }
+      ]
+    },
+    {
+      "name": "position-id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); \r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/positions/12345",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "positions",
+            "12345"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "position-id",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/positions/12345",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "positions",
+                "12345"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:49:26 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07ee604a2e78b2-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<position>\n    <positionId>12345</positionId>\n    <customerId>12212</customerId>\n    <name>AMR Corporation</name>\n    <symbol>AAR</symbol>\n    <shares>20</shares>\n    <purchasePrice>23.5300</purchasePrice>\n</position>"
+        }
+      ]
+    },
+    {
+      "name": "sell position",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); \r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]); \r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/customers/12212/sellPosition?accountId=13344&positionId=12345&shares=1&pricePerShare=22",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "customers",
+            "12212",
+            "sellPosition"
+          ],
+          "query": [
+            {
+              "key": "accountId",
+              "value": "13344"
+            },
+            {
+              "key": "positionId",
+              "value": "12345"
+            },
+            {
+              "key": "shares",
+              "value": "1"
+            },
+            {
+              "key": "pricePerShare",
+              "value": "22"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "sell-position",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/customers/12212/sellPosition?accountId=13344&positionId=12345&shares=1&pricePerShare=22",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "customers",
+                "12212",
+                "sellPosition"
+              ],
+              "query": [
+                {
+                  "key": "accountId",
+                  "value": "13344"
+                },
+                {
+                  "key": "positionId",
+                  "value": "12345"
+                },
+                {
+                  "key": "shares",
+                  "value": "1"
+                },
+                {
+                  "key": "pricePerShare",
+                  "value": "22"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 13:50:29 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/xml"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a07efe73f3178b2-BCN"
+            }
+          ],
+          "cookie": [],
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<positions>\n    <position>\n        <positionId>13017</positionId>\n        <customerId>12212</customerId>\n        <name>AMR Corporation</name>\n        <symbol>AAR</symbol>\n        <shares>2</shares>\n        <purchasePrice>22.0000</purchasePrice>\n    </position>\n    <position>\n        <positionId>12345</positionId>\n        <customerId>12212</customerId>\n        <name>AMR Corporation</name>\n        <symbol>AAR</symbol>\n        <shares>19</shares>\n        <purchasePrice>23.5300</purchasePrice>\n    </position>\n</positions>"
+        }
+      ]
+    },
+    {
+      "name": "positions_between_dates",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "pm.test(\"Response is XML\", function () {\r",
+              "    pm.response.to.have.header(\"Content-Type\", \"application/xml\");\r",
+              "});\r",
+              "pm.test(\"Handle invalid customerId error\", function () {\r",
+              "    if (pm.response.code === 400 || pm.response.code === 500) {\r",
+              "        pm.expect(pm.response.text()).to.include(\"error\"); \r",
+              "    } else {\r",
+              "        pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+              "    }\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://parabank.parasoft.com/parabank/services/bank/positions/12345/11-11-23/18-11-25",
+          "protocol": "https",
+          "host": [
+            "parabank",
+            "parasoft",
+            "com"
+          ],
+          "path": [
+            "parabank",
+            "services",
+            "bank",
+            "positions",
+            "12345",
+            "11-11-23",
+            "18-11-25"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "positions_between_dates",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://parabank.parasoft.com/parabank/services/bank/positions/12345/11-11-23/18-11-25",
+              "protocol": "https",
+              "host": [
+                "parabank",
+                "parasoft",
+                "com"
+              ],
+              "path": [
+                "parabank",
+                "services",
+                "bank",
+                "positions",
+                "12345",
+                "11-11-23",
+                "18-11-25"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Tue, 18 Nov 2025 14:15:06 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "text/plain;charset=UTF-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "30"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "CF-RAY",
+              "value": "9a0813fb58a813d0-BCN"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Server",
+              "value": "cloudflare"
+            }
+          ],
+          "cookie": [],
+          "body": "Could not find position #12345"
+        }
+      ]
+    }
+  ]
+}
